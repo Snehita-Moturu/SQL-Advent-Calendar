@@ -1,0 +1,35 @@
+🌟 TreeSQL Advent Calendar Challenge - Day [1] 🌟
+A Bit About My Learning Journey:
+With the market being tough right now, I've been keeping myself engaged in learning and strengthening my skills. The TreeSQL Advent Calendar challenge came at the perfect time, offering me a structured way to continue refining my SQL knowledge and tackle new, interesting problems each day.
+
+Today's Challenge:
+A ski resort company wants to know which customers rented ski equipment for more than one type of activity (e.g., skiing and snowboarding). We need to list the customer names and the number of distinct activities they rented equipment for.
+
+My Solution:
+To tackle this, I focused on:
+
+Grouping by customer_name: This allows us to count activities per customer.
+Counting distinct activities: Using COUNT(DISTINCT activity) ensures we only count unique activities for each customer.
+Filtering with HAVING: We needed to ensure the count of distinct activities is greater than 1, so I applied a HAVING condition.
+sql
+Copy code
+SELECT 
+    customer_name, 
+    COUNT(DISTINCT activity) AS no_of_distinct_activities
+FROM 
+    rentals
+GROUP BY 
+    customer_name
+HAVING 
+    COUNT(DISTINCT activity) > 1;
+Explanation:
+
+COUNT(DISTINCT activity): Counts the number of unique activities per customer.
+GROUP BY customer_name: Aggregates the data by each customer.
+HAVING COUNT(DISTINCT activity) > 1: Filters customers who rented equipment for more than one type of activity.
+Key Takeaways:
+
+Order of Execution: It's important to remember that HAVING works after GROUP BY. So, the grouping happens first, and the filtering occurs afterward.
+This query effectively helps identify customers who engaged in multiple activities, allowing the company to better understand customer behavior.
+
+What I learned: I found it helpful to refresh the order of execution in SQL queries and how GROUP BY and HAVING interact. It’s a great reminder of the power of aggregation and filtering!
